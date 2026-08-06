@@ -17,7 +17,7 @@ class Solution {
        int count = 0 ;
        int count1 = 0 ;
        //travel loop from 0 to n
-       for( int i = 0 ; i < nums.size() ; i++ ){
+       for( int i = 0 ; i< nums.size() ; i++ ){
            if( nums[i] == 1 ){
             count++ ;
             if( count > count1 ){
