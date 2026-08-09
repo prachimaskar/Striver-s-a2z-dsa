@@ -21,7 +21,7 @@ class Solution{
           for(int i = 0 ; i < nums.size() ; i++){
             ans = ans ^ nums[i] ;
           }
-          for( int i = 0 ; i<nums.size()+1 ; i++){
+          for( int i = 0 ; i < nums.size()+1 ; i++){
             ans = ans ^ i ;
           }
           return ans ;

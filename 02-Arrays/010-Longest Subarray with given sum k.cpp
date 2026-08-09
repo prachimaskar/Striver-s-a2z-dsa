@@ -8,6 +8,10 @@ SC : O(1)
 Approach : Prefix sum + hash map :  optimal force ( apply when no.s is postives , negative , zero in the array ) ,
 TC : O(n)
 SC : O(1)
+
+Approach : Two Pointer
+TC : O()
+SC :
  */
 
 #include<iostream>
@@ -16,13 +20,14 @@ SC : O(1)
 using namespace std ;
 class Solution{
     public :
-       int longestsubarray( vector<int> & nums , int k ){
 
-       map<long long ,int > hash ;
-       long long sum = 0 ;
-       int maxlen = 0;
+      int longestsubarray( vector<int> & nums , int k ){
 
-       for( int i =0 ;i< nums.size() ; i++){           //0(n)
+        map<long long ,int > hash ;
+        long long sum = 0 ;
+        int maxlen = 0;
+
+        for( int i =0 ;i < nums.size() ; i++){           //0(n)
            sum =sum + nums[i] ;
            if( sum == k ){
             maxlen =max( maxlen , i+1);
@@ -38,17 +43,36 @@ class Solution{
            if( hash.find(sum) == hash.end()){
              hash[sum]=i;
            }
-       }
+        }
          return maxlen;
-       }
+      }
+
+      int longestSubarray(vector<int> & nums , int k ){
+        long sum = 0 ;
+        int maxlen = 0;
+        int j =0;
+        for( int i = 0 ; i< nums.size() ;i++){
+           sum = sum + nums[i] ;
+
+           while(sum > k){
+             sum = sum - nums[j] ;
+             j++;
+           }
+
+           if( sum == k){
+            maxlen =max( maxlen , i-j +1 );
+           }
+         }
+        return maxlen ;
+      }
 };
 int main(){
 
-    vector<int>nums = { 1, 2, 3, 1, 1, 1, 4,3,2};
+    vector<int>nums = { 1, 2, 3, 1, 1, 1, 4, 3 , 2 };
     int k = 3 ;
     Solution obj ;
     cout<<obj.longestsubarray(nums, k)<<endl;
-
+    cout<<obj.longestSubarray(nums,k)<<endl;
     return 0;
 }
 
